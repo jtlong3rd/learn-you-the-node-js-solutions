@@ -41,10 +41,13 @@
 var fs = require('fs');
 
 module.exports = function(directory, fileExt, callback) {
-    fs.readdir(directory, function (err, files) {
-        if (err) {return callback(err);}
-      
-        var filteredFiles = files.filter( function(fileName) { return fileName.split('.')[1] === fileExt } );
-        callback(null, filteredFiles);
-    });
+  fs.readdir(directory, function (err, files) {
+    if (err) {
+      return callback(err);
+    }
+
+    callback(null, files.filter(function(fileName) { 
+      return fileName.split('.')[1] === fileExt;
+    }));
+  });
 }

@@ -24,9 +24,9 @@ fs.readdir(dirName, function(err, files) {
 
   files
   .filter(function(fileName) { 
-    return fileName.split('.')[1] === fileExt 
+    return fileName.split('.')[1] === fileExt;
   })
   .forEach(function(fileName) {
-    console.log(fileName)
+    console.log(fileName);
   });
 });

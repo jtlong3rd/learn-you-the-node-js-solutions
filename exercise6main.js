@@ -46,10 +46,12 @@ var filterer = require('./exercise6module');
 var directory = process.argv[2];
 var extension = process.argv[3];
 
-var callback = function(err, files) {
-    if (err) return console.error(err);
-        
-    files.forEach(function(fileName) {console.log(fileName)});
-}
+var callback = function(err, data) {
+  if (err) {
+    return console.error(err);
+  }
+
+  data.forEach(function(fileName) {console.log(fileName)});
+};
 
 filterer(directory, extension, callback);
