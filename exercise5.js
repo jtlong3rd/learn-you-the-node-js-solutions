@@ -17,11 +17,16 @@ var fs = require('fs');
 var dirName = process.argv[2];
 var fileExt = process.argv[3];
 
-fs.readdir(dirName, 
-           function(err, files) {
-                if (err) throw err;
-                
-                var filesToPrint = files.filter( function(fileName) { return fileName.split('.')[1] === fileExt } );
-                filesToPrint.forEach(function(fileName) {console.log(fileName)});
-           }
-          );
+fs.readdir(dirName, function(err, files) {
+  if (err) {
+    throw err;
+  }
+
+  files
+  .filter(function(fileName) { 
+    return fileName.split('.')[1] === fileExt 
+  })
+  .forEach(function(fileName) {
+    console.log(fileName)
+  });
+});
