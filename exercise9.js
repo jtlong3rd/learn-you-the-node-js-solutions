@@ -11,26 +11,28 @@
 // command-line arguments.  
 
 var http = require('http');
-var urls = [process.argv[2], process.argv[3], process.argv[4]];
-var outputs = ['','',''];
+var urls = process.argv.slice(2);
+
+var outputs = new Array(urls.length);
+outputs.fill('');
 
 var finishedOutputNum = 0;
 
-for (var i = 0; i < urls.length; i++) {
-    (function(urlInd) {
-        http.get(urls[urlInd], 
-                 function (response) {
-                     response.setEncoding('utf8');
-                     response.on('data', function(data) { outputs[urlInd] += data; });
-                     response.on('end', 
-                                 function(data) { 
-                                    finishedOutputNum++;
-                                     
-                                    if (finishedOutputNum === 3) 
-                                        outputs.forEach( function(nextOutput) { console.log(nextOutput); } );
-                                 }
-                                );
-                 }
-                );
-    })(i);
-}
+urls.forEach(function(url, ind) {
+  http.get(url, function(response) {
+    response.setEncoding('utf-8');
+    response.on('data', function(data) {
+      outputs[ind] += data;
+    });
+    response.on('error', console.error);
+    response.on('end', function(data) {
+      finishedOutputNum++;
+
+      if (finishedOutputNum === urls.length) {
+        outputs.forEach(function(output) {
+          console.log(output);
+        });
+      }
+    });
+  });
+});
