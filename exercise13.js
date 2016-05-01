@@ -32,23 +32,30 @@ var url = require('url');
 var port = process.argv[2];
 
 var server = http.createServer(function(request, response) {
-                                var parsedURL = url.parse(request.url, true);
-                                var requestTime = new Date(parsedURL.query.iso);
-                                var responseTimeObject = {};
-                                
-                                if (parsedURL.pathname === '/api/parsetime') {
-                                    responseTimeObject.hour = requestTime.getHours();
-                                    responseTimeObject.minute = requestTime.getMinutes();
-                                    responseTimeObject.second = requestTime.getSeconds();
-                                }
-                                else if (parsedURL.pathname === '/api/unixtime') {
-                                    responseTimeObject.unixtime = requestTime.getTime();
-                                }
-                                
-                                response.writeHead(200, { 'Content-Type': 'application/json' });
-                                response.write(JSON.stringify(responseTimeObject));
-                                response.end();
-                               }
-                              );
+  var parsedURL = url.parse(request.url, true);
+  var requestTime = new Date(parsedURL.query.iso);
+  var responseTimeObject;
+
+  if (parsedURL.pathname === '/api/parsetime') {
+    responseTimeObject = {
+      hour: requestTime.getHours(),
+      minute: requestTime.getMinutes(),
+      second: requestTime.getSeconds()
+    };
+  } else if (parsedURL.pathname === '/api/unixtime') {
+    responseTimeObject = {
+      unixtime: requestTime.getTime()
+    };
+  }
+
+  if (responseTimeObject) {
+    response.writeHead(200, { 'Content-Type': 'application/json' });
+    response.write(JSON.stringify(responseTimeObject));
+  } else {
+    response.writeHead(404);
+  }
+
+  response.end();
+});
 
 server.listen(port);
