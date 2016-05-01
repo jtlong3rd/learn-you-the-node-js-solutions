@@ -16,22 +16,20 @@
 var net = require('net');
 var port = process.argv[2];
 
-var server = net.createServer(function(socket) {
-                                var currTime = new Date();
-                                socket.write(currTime.getFullYear() + '-' 
-                                             + zeroPad(currTime.getMonth() + 1) + '-' 
-                                             + zeroPad(currTime.getDate()) + ' '
-                                             + zeroPad(currTime.getHours()) + ':'
-                                             + zeroPad(currTime.getMinutes()) + '\n');
-                                socket.end();
-                              }
-                             );
+var zeroPad = function(param) {
+  return param < 10 ? '0' + param : param;
+}
+
+var server = net.createServer(function(socket){
+  var currTime = new Date();
+
+  socket.write(currTime.getFullYear() + '-' +
+    zeroPad(currTime.getMonth() + 1) + '-' +
+    zeroPad(currTime.getDate()) + ' ' +
+    zeroPad(currTime.getHours()) + ':' +
+    zeroPad(currTime.getMinutes()) + '\n');
+
+  socket.end();
+});
 
 server.listen(port);
-
-function zeroPad(param) {
-    if (param < 10)
-        return '0' + param;
-    else
-        return param;
-}
