@@ -4,8 +4,8 @@
 // as the first command-line argument. Write the String contents of each
 // "data" event from the response to a new line on the console (stdout).
 
-var { get } = require('http');
-var url = process.argv[2];
+const { get } = require('http');
+const url = process.argv[2];
 
 get(url, (response) => {
   response.setEncoding('utf8');
