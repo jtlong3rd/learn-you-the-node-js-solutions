@@ -38,10 +38,10 @@
 // » Don't change anything else, like global variables or stdout.
 // » Handle all the errors that may occur and pass them to the callback.
 
-var fs = require('fs');
+const fs = require('fs');
 
-module.exports = function(directory, fileExt, callback) {
-  fs.readdir(directory, function (err, files) {
+module.exports = (directory, fileExt, callback) => {
+  fs.readdir(directory, (err, files) => {
     if (err) {
       return callback(err, null);
     }

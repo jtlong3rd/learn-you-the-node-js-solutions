@@ -42,9 +42,9 @@
 // who expects this contract. So your module could be used by anyone else who
 // does learnyounode, or the verifier, and just work.
 
-var filterer = require('./exercise6module');
-var directory = process.argv[2];
-var extension = process.argv[3];
+const filterer = require('./exercise6module');
+const directory = process.argv[2];
+const extension = process.argv[3];
 
 filterer(directory, extension, (err, data) => {
   if (err) {
