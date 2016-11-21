@@ -29,7 +29,7 @@
 
 const { createServer } = require('http');
 const { parse } = require('url');
-var port = process.argv[2];
+const port = process.argv[2];
 
 const server = createServer((request, response) => {
   const { pathname, query: { iso } } = parse(request.url, true);
