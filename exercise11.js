@@ -11,7 +11,7 @@
 // stream the file contents to the response.
 
 const { createReadStream } = require('fs');
-const { createServer }= require('http');
+const { createServer } = require('http');
 const port = process.argv[2];
 const filePath = process.argv[3];
 

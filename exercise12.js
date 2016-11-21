@@ -6,7 +6,7 @@
 // Your server should listen on the port provided by the first argument to
 // your program.
 
-const { createServer }= require('http');
+const { createServer } = require('http');
 const map = require('through2-map');
 const port = process.argv[2];
 
