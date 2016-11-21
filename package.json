@@ -1,0 +1,22 @@
+{
+  "name": "learn-you-the-node-js-solutions",
+  "version": "1.0.0",
+  "description": "My solutions to the (super enjoyable) \"Learn You The Node.js For Much Win\"",
+  "main": "exercise1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jtlong3rd/learn-you-the-node-js-solutions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jtlong3rd/learn-you-the-node-js-solutions/issues"
+  },
+  "homepage": "https://github.com/jtlong3rd/learn-you-the-node-js-solutions#readme",
+  "dependencies": {
+    "through2-map": "^3.0.0"
+  }
+}
